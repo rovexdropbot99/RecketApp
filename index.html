@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rocket</title>
+
+<style>
+
+body {
+    margin: 0;
+    background: #080b16;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.app {
+    max-width: 430px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.box {
+    background: #151b2d;
+    padding: 18px;
+    margin-top: 15px;
+    border-radius: 18px;
+}
+
+#multiplier {
+    font-size: 55px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#rocket {
+    text-align: center;
+    font-size: 70px;
+    margin-top: 40px;
+}
+
+button,
+input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 10px;
+}
+
+button {
+    background: #5865f2;
+    color: white;
+    font-weight: bold;
+}
+
+.admin {
+    display: none;
+}
+
+.admin button {
+    background: #e04b4b;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <h1>🚀 Rocket</h1>
+
+    <div class="box">
+
+        <div id="multiplier">
+            1.00x
+        </div>
+
+        <div id="rocket">
+            🚀
+        </div>
+
+    </div>
+
+
+    <div class="box">
+
+        <b>Balance</b>
+
+        <h2 id="balance">
+            1000 Points
+        </h2>
+
+    </div>
+
+
+    <!-- ADMIN PANEL -->
+
+    <div
+        id="adminPanel"
+        class="box admin"
+    >
+
+        <h2>👑 Admin Panel</h2>
+
+        <p>
+            Owner Only
+        </p>
+
+        <button onclick="newRound()">
+            NEW ROUND
+        </button>
+
+        <button onclick="resetPoints()">
+            RESET POINTS
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+var balance = 1000;
+
+
+/*
+    Rocket
+*/
+
+function updateRocket() {
+
+    fetch("/api/rocket")
+
+        .then(function(response) {
+            return response.json();
+        })
+
+        .then(function(data) {
+
+            var x =
+                data.multiplier;
+
+            document.getElementById(
+                "multiplier"
+            ).innerText =
+                x.toFixed(2) + "x";
+
+
+            var rocket =
+                document.getElementById(
+                    "rocket"
+                );
+
+
+            /*
+                x များလေ
+                Rocket ပိုမြန်
+            */
+
+            rocket.style.transform =
+                "translateY(" +
+                (-x * 2) +
+                "px)";
+
+        })
+
+        .catch(function() {
+
+            console.log(
+                "Server disconnected"
+            );
+
+        });
+}
+
+
+setInterval(
+    updateRocket,
+    100
+);
+
+updateRocket();
+
+
+/*
+    Admin check
+*/
+
+function checkAdmin() {
+
+    fetch("/api/admin", {
+
+        headers: {
+            "x-telegram-user-id":
+                "5365191875"
+        }
+
+    })
+
+    .then(function(response) {
+
+        if (!response.ok) {
+            return;
+        }
+
+        return response.json();
+
+    })
+
+    .then(function(data) {
+
+        if (
+            data &&
+            data.success === true &&
+            data.admin === true
+        ) {
+
+            document.getElementById(
+                "adminPanel"
+            ).style.display =
+                "block";
+        }
+
+    });
+
+}
+
+
+checkAdmin();
+
+
+/*
+    Admin buttons
+*/
+
+function newRound() {
+
+    alert(
+        "New round control will be connected next."
+    );
+
+}
+
+
+function resetPoints() {
+
+    balance = 1000;
+
+    document.getElementById(
+        "balance"
+    ).innerText =
+        balance + " Points";
+
+}
+
+
+</script>
+
+</body>
+</html>
