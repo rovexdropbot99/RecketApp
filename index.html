@@ -1,268 +1,480 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rocket</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>rovex_drop</title>
 
 <style>
 
-body {
-    margin: 0;
-    background: #080b16;
-    color: white;
-    font-family: Arial, sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-.app {
-    max-width: 430px;
-    margin: auto;
-    padding: 20px;
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:white;
+
+    background:
+    radial-gradient(
+        circle at 50% 0%,
+        #34458f,
+        #10162c 42%,
+        #05070d
+    );
 }
 
-h1 {
-    text-align: center;
+header{
+    height:70px;
+    padding:0 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(7,11,25,.95);
+
+    border-bottom:1px solid #ffffff12;
+
+    position:sticky;
+    top:0;
+    z-index:20;
+
+    backdrop-filter:blur(12px);
 }
 
-.box {
-    background: #151b2d;
-    padding: 18px;
-    margin-top: 15px;
-    border-radius: 18px;
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    color:#8b99ff;
 }
 
-#multiplier {
-    font-size: 55px;
-    text-align: center;
-    font-weight: bold;
+.balance{
+    padding:10px 14px;
+    border-radius:13px;
+
+    background:#151e38;
+    color:#c1c8ff;
+
+    font-weight:bold;
 }
 
-#rocket {
-    text-align: center;
-    font-size: 70px;
-    margin-top: 40px;
+
+/* HERO */
+
+.container{
+    width:92%;
+    max-width:900px;
+
+    margin:auto;
+
+    padding:35px 0 40px;
 }
 
-button,
-input {
-    width: 100%;
-    padding: 14px;
-    margin-top: 10px;
-    border: 0;
-    border-radius: 10px;
+.hero{
+    text-align:center;
+    padding:15px 0 30px;
 }
 
-button {
-    background: #5865f2;
-    color: white;
-    font-weight: bold;
+.hero-icon{
+    width:85px;
+    height:85px;
+
+    margin:0 auto 16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:24px;
+
+    font-size:47px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #536cff,
+        #9a55ff
+    );
+
+    box-shadow:
+    0 15px 50px
+    rgba(92,105,255,.35);
 }
 
-.admin {
-    display: none;
+.hero h1{
+    font-size:40px;
+    margin-bottom:8px;
 }
 
-.admin button {
-    background: #e04b4b;
+.hero p{
+    color:#909ab5;
+    line-height:1.6;
+}
+
+
+/* FEATURE GRID */
+
+.features{
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:16px;
+}
+
+
+/* CARD */
+
+.feature{
+    position:relative;
+
+    min-height:220px;
+
+    padding:25px;
+
+    overflow:hidden;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #151f40,
+        #0d1327
+    );
+
+    border:1px solid #ffffff12;
+
+    box-shadow:
+    0 15px 45px
+    rgba(0,0,0,.25);
+
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+
+    border-color:#7180ff44;
+}
+
+
+/* ICON */
+
+.feature-icon{
+    width:62px;
+    height:62px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    font-size:34px;
+
+    background:#202c52;
+
+    margin-bottom:18px;
+}
+
+
+/* TEXT */
+
+.feature h2{
+    font-size:23px;
+    margin-bottom:7px;
+}
+
+.feature p{
+    color:#858fa8;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+}
+
+
+/* OPEN BUTTON */
+
+.open{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:11px 18px;
+
+    border-radius:12px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+        90deg,
+        #6075ff,
+        #955cff
+    );
+
+    box-shadow:
+    0 8px 25px
+    rgba(96,117,255,.25);
+
+    transition:.2s;
+}
+
+.open:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 12px 30px
+    rgba(96,117,255,.4);
+}
+
+
+/* LOCKED */
+
+.locked{
+    opacity:.65;
+}
+
+.locked:hover{
+    transform:none;
+}
+
+.locked-badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    background:#20283d;
+
+    color:#7e899f;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+
+    padding:28px 0 5px;
+
+    color:#59637b;
+
+    font-size:12px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:33px;
+    }
+
+    .feature{
+        min-height:190px;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div class="app">
 
-    <h1>🚀 Rocket</h1>
+<header>
 
-    <div class="box">
+<div class="logo">
+rovex_drop
+</div>
 
-        <div id="multiplier">
-            1.00x
-        </div>
+<div class="balance">
+⭐ 1000
+</div>
 
-        <div id="rocket">
-            🚀
-        </div>
-
-    </div>
+</header>
 
 
-    <div class="box">
 
-        <b>Balance</b>
-
-        <h2 id="balance">
-            1000 Points
-        </h2>
-
-    </div>
+<div class="container">
 
 
-    <!-- ADMIN PANEL -->
+<!-- HERO -->
 
-    <div
-        id="adminPanel"
-        class="box admin"
-    >
+<section class="hero">
 
-        <h2>👑 Admin Panel</h2>
+<div class="hero-icon">
+🚀
+</div>
 
-        <p>
-            Owner Only
-        </p>
+<h1>
+rovex_drop
+</h1>
 
-        <button onclick="newRound()">
-            NEW ROUND
-        </button>
+<p>
+Choose your game and explore the world.
+</p>
 
-        <button onclick="resetPoints()">
-            RESET POINTS
-        </button>
+</section>
 
-    </div>
+
+
+<!-- FEATURES -->
+
+<div class="features">
+
+
+<!-- ROCKET -->
+
+<div class="feature">
+
+<div class="feature-icon">
+🚀
+</div>
+
+<h2>
+Rocket
+</h2>
+
+<p>
+Fly the rocket and claim your
+virtual Demo Points before it crashes.
+</p>
+
+<a
+href="rocket.html"
+class="open">
+
+🚀 Open Rocket
+
+</a>
 
 </div>
 
 
-<script>
 
-var balance = 1000;
+<!-- BOX -->
 
+<div class="feature locked">
 
-/*
-    Rocket
-*/
+<div class="feature-icon">
+🎁
+</div>
 
-function updateRocket() {
+<h2>
+Box
+</h2>
 
-    fetch("/api/rocket")
+<p>
+Open reward boxes and discover
+different virtual rewards.
+</p>
 
-        .then(function(response) {
-            return response.json();
-        })
+<div class="locked-badge">
+🔒 Coming Soon
+</div>
 
-        .then(function(data) {
-
-            var x =
-                data.multiplier;
-
-            document.getElementById(
-                "multiplier"
-            ).innerText =
-                x.toFixed(2) + "x";
+</div>
 
 
-            var rocket =
-                document.getElementById(
-                    "rocket"
-                );
+
+<!-- PVP -->
+
+<div class="feature locked">
+
+<div class="feature-icon">
+⚔️
+</div>
+
+<h2>
+PVP
+</h2>
+
+<p>
+Battle against other players
+in future rounds.
+</p>
+
+<div class="locked-badge">
+🔒 Coming Soon
+</div>
+
+</div>
 
 
-            /*
-                x များလေ
-                Rocket ပိုမြန်
-            */
 
-            rocket.style.transform =
-                "translateY(" +
-                (-x * 2) +
-                "px)";
+<!-- COLLECTION -->
 
-        })
+<div class="feature locked">
 
-        .catch(function() {
+<div class="feature-icon">
+💎
+</div>
 
-            console.log(
-                "Server disconnected"
-            );
+<h2>
+Collection
+</h2>
 
-        });
-}
+<p>
+View and manage your collected
+virtual rewards.
+</p>
 
+<div class="locked-badge">
+🔒 Coming Soon
+</div>
 
-setInterval(
-    updateRocket,
-    100
-);
-
-updateRocket();
+</div>
 
 
-/*
-    Admin check
-*/
-
-function checkAdmin() {
-
-    fetch("/api/admin", {
-
-        headers: {
-            "x-telegram-user-id":
-                "5365191875"
-        }
-
-    })
-
-    .then(function(response) {
-
-        if (!response.ok) {
-            return;
-        }
-
-        return response.json();
-
-    })
-
-    .then(function(data) {
-
-        if (
-            data &&
-            data.success === true &&
-            data.admin === true
-        ) {
-
-            document.getElementById(
-                "adminPanel"
-            ).style.display =
-                "block";
-        }
-
-    });
-
-}
+</div>
 
 
-checkAdmin();
+
+<footer>
+
+rovex_drop • Virtual Demo Points
+
+</footer>
 
 
-/*
-    Admin buttons
-*/
-
-function newRound() {
-
-    alert(
-        "New round control will be connected next."
-    );
-
-}
-
-
-function resetPoints() {
-
-    balance = 1000;
-
-    document.getElementById(
-        "balance"
-    ).innerText =
-        balance + " Points";
-
-}
-
-
-</script>
+</div>
 
 </body>
 </html>
