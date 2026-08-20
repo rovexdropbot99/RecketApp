@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About - rovex_drop</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #050510;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .background {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+
+      background: #6c2cff;
+      filter: blur(180px);
+      opacity: 0.25;
+
+      top: 20%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      animation:
+        glowMove 8s ease-in-out infinite alternate;
+
+      z-index: -2;
+    }
+
+    nav {
+      height: 70px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0 7%;
+
+      background:
+        rgba(5,5,16,0.8);
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.1);
+
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+
+      text-shadow:
+        0 0 10px #6c2cff,
+        0 0 25px #6c2cff;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+
+      margin-left: 20px;
+
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+
+      text-shadow:
+        0 0 10px #8b5cff,
+        0 0 20px #8b5cff;
+    }
+
+    .container {
+      min-height:
+        calc(100vh - 70px);
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 40px 20px;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 800px;
+
+      padding: 50px 35px;
+
+      text-align: center;
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border:
+        1px solid rgba(255,255,255,0.12);
+
+      border-radius: 25px;
+
+      backdrop-filter: blur(15px);
+
+      box-shadow:
+        0 0 50px
+        rgba(108,44,255,0.15);
+
+      animation:
+        appear 0.8s ease;
+    }
+
+    h1 {
+      font-size: 55px;
+
+      text-shadow:
+        0 0 15px #6c2cff,
+        0 0 35px #6c2cff;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+
+      color: #aaa;
+
+      font-size: 18px;
+    }
+
+    .text {
+      margin-top: 25px;
+
+      color: #bbb;
+
+      line-height: 1.8;
+
+      font-size: 16px;
+    }
+
+    .highlight {
+      color: #a855f7;
+      font-weight: bold;
+    }
+
+    /* Cards */
+
+    .features {
+      display: flex;
+
+      justify-content: center;
+
+      gap: 20px;
+
+      flex-wrap: wrap;
+
+      margin-top: 40px;
+    }
+
+    .feature {
+      width: 210px;
+
+      padding: 28px 18px;
+
+      background:
+        rgba(255,255,255,0.05);
+
+      border:
+        1px solid rgba(255,255,255,0.1);
+
+      border-radius: 20px;
+
+      transition: 0.3s;
+
+      cursor: pointer;
+    }
+
+    .feature:hover {
+      transform:
+        translateY(-10px)
+        scale(1.04);
+
+      border-color:
+        rgba(139,92,255,0.6);
+
+      box-shadow:
+        0 0 30px
+        rgba(108,44,255,0.3);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+
+      margin-bottom: 12px;
+
+      filter:
+        drop-shadow(
+          0 0 10px #8b5cff
+        );
+    }
+
+    .feature h2 {
+      margin-bottom: 10px;
+
+      font-size: 24px;
+    }
+
+    .feature p {
+      color: #999;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+    }
+
+    .back {
+      display: inline-block;
+
+      margin-top: 35px;
+
+      color: #aaa;
+
+      text-decoration: none;
+
+      transition: 0.3s;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+    @keyframes glowMove {
+      from {
+        transform:
+          translate(-60%, -40%)
+          scale(0.8);
+      }
+
+      to {
+        transform:
+          translate(20%, 30%)
+          scale(1.2);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      nav {
+        padding: 0 15px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      nav a {
+        margin-left: 8px;
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .box {
+        padding: 35px 20px;
+      }
+
+      .feature {
+        width: 160px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+
+
+  <!-- Navigation -->
+
+  <nav>
+
+    <div class="logo">
+      rovex_drop
+    </div>
+
+    <div>
+
+      <a href="home.html">
+        Home
+      </a>
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- About -->
+
+  <div class="container">
+
+    <div class="box">
+
+      <h1>
+        ABOUT
+      </h1>
+
+      <p class="subtitle">
+        Welcome to rovex_drop
+      </p>
+
+      <p class="text">
+        This is the official space of
+        <span class="highlight">
+          rovex_drop
+        </span>.
+        <br><br>
+
+        Explore the different sections
+        below and discover what's coming
+        to the website.
+      </p>
+
+
+      <!-- Three Sections -->
+
+      <div class="features">
+
+
+        <!-- BOX -->
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            📦
+          </div>
+
+          <h2>
+            Box
+          </h2>
+
+          <p>
+            Explore the Box section and
+            discover what's inside.
+          </p>
+
+        </div>
+
+
+        <!-- PVP -->
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ⚔️
+          </div>
+
+          <h2>
+            PVP
+          </h2>
+
+          <p>
+            Enter the PVP section and
+            explore competitive content.
+          </p>
+
+        </div>
+
+
+        <!-- RECKET -->
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🚀
+          </div>
+
+          <h2>
+            Recket
+          </h2>
+
+          <p>
+            The Recket section is coming
+            with exciting features.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <a
+        class="back"
+        href="home.html"
+      >
+        ← Back Home
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
