@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PvP</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#070b16;
+    color:white;
+}
+
+header{
+    background:#10182b;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.back{
+    background:#26334d;
+    color:white;
+    border:0;
+    padding:10px 15px;
+    border-radius:10px;
+    color:white;
+}
+
+.logo{
+    color:#5ee7ff;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.arena{
+    background:#111a2d;
+    border:1px solid #293957;
+    border-radius:20px;
+    padding:25px;
+}
+
+.players{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.player{
+    background:#18243d;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.avatar{
+    font-size:60px;
+    margin:15px;
+}
+
+.hp{
+    height:18px;
+    background:#303b55;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.hpbar{
+    width:100%;
+    height:100%;
+    background:#20d477;
+    transition:.3s;
+}
+
+.controls{
+    text-align:center;
+    margin-top:25px;
+}
+
+button{
+    border:0;
+    padding:14px 25px;
+    border-radius:12px;
+    background:#e63946;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    margin:5px;
+}
+
+.start{
+    background:#1687ff;
+}
+
+.message{
+    text-align:center;
+    margin-top:20px;
+    color:#9eabc2;
+}
+
+@media(max-width:600px){
+
+.players{
+    grid-template-columns:1fr;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<button
+class="back"
+onclick="location.href='index.html'">
+⬅ Back
+</button>
+
+<div class="logo">
+⚔️ PvP
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="arena">
+
+<h1 style="text-align:center;">
+⚔️ PvP Arena
+</h1>
+
+<br>
+
+<div class="players">
+
+<div class="player">
+
+<h2>👤 You</h2>
+
+<div class="avatar">
+🧑
+</div>
+
+HP:
+<span id="playerHPText">100</span>
+
+<div class="hp">
+<div
+id="playerHP"
+class="hpbar">
+</div>
+</div>
+
+</div>
+
+
+<div class="player">
+
+<h2>🤖 Enemy</h2>
+
+<div class="avatar">
+🤖
+</div>
+
+HP:
+<span id="enemyHPText">100</span>
+
+<div class="hp">
+<div
+id="enemyHP"
+class="hpbar">
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="controls">
+
+<button
+class="start"
+onclick="startGame()">
+⚔️ Start PvP
+</button>
+
+<button
+onclick="attack()">
+💥 Attack
+</button>
+
+</div>
+
+
+<div
+id="message"
+class="message">
+Press Start PvP to begin.
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let playerHP=100;
+
+let enemyHP=100;
+
+let playing=false;
+
+
+function update(){
+
+document.getElementById(
+"playerHPText"
+).textContent=playerHP;
+
+document.getElementById(
+"enemyHPText"
+).textContent=enemyHP;
+
+
+document.getElementById(
+"playerHP"
+).style.width=
+playerHP+"%";
+
+
+document.getElementById(
+"enemyHP"
+).style.width=
+enemyHP+"%";
+
+}
+
+
+function startGame(){
+
+playerHP=100;
+
+enemyHP=100;
+
+playing=true;
+
+update();
+
+message(
+"⚔️ Battle started!"
+);
+
+}
+
+
+function attack(){
+
+if(!playing){
+
+message(
+"❌ Start PvP first."
+);
+
+return;
+
+}
+
+
+let damage=
+Math.floor(
+Math.random()*20
+)+10;
+
+
+enemyHP-=damage;
+
+
+if(enemyHP<0){
+
+enemyHP=0;
+
+}
+
+
+update();
+
+
+if(enemyHP<=0){
+
+playing=false;
+
+message(
+"🏆 YOU WIN!"
+);
+
+return;
+
+}
+
+
+setTimeout(enemyAttack,600);
+
+}
+
+
+function enemyAttack(){
+
+if(!playing){
+
+return;
+
+}
+
+
+let damage=
+Math.floor(
+Math.random()*15
+)+5;
+
+
+playerHP-=damage;
+
+
+if(playerHP<0){
+
+playerHP=0;
+
+}
+
+
+update();
+
+
+if(playerHP<=0){
+
+playing=false;
+
+message(
+"💀 You lost!"
+);
+
+}
+
+}
+
+
+function message(text){
+
+document.getElementById(
+"message"
+).textContent=text;
+
+}
+
+
+update();
+
+</script>
+
+</body>
+</html>
