@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact - XENNO</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #050510;
+      color: white;
+    }
+
+    nav {
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 7%;
+      background: rgba(5,5,16,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-shadow: 0 0 20px #6c2cff;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      margin-left: 20px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 15px #8b5cff;
+    }
+
+    .container {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 550px;
+      padding: 40px 30px;
+      text-align: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 25px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 50px rgba(108,44,255,0.15);
+      animation: appear 0.8s ease;
+    }
+
+    h1 {
+      font-size: 55px;
+      text-shadow: 0 0 15px #6c2cff, 0 0 35px #6c2cff;
+    }
+
+    .subtitle {
+      color: #aaa;
+      margin: 10px 0 25px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 7px 0;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.07);
+      color: white;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #8b5cff;
+      box-shadow: 0 0 15px rgba(139,92,255,0.25);
+    }
+
+    textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 13px 35px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #6c2cff, #a855f7);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px #6c2cff;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .back {
+      display: block;
+      margin-top: 25px;
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">XENNO</div>
+
+    <div>
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+
+  <div class="container">
+
+    <div class="box">
+
+      <h1>CONTACT</h1>
+
+      <p class="subtitle">
+        Send me a message 🚀
+      </p>
+
+      <form
+        id="contact-form"
+        action="https://formspree.io/f/mppakwrg"
+        method="POST"
+      >
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+        >
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+        >
+
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          required
+        ></textarea>
+
+        <button id="send-button" type="submit">
+          SEND MESSAGE
+        </button>
+
+      </form>
+
+      <a class="back" href="home.html">
+        ← Back Home
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const button = document.getElementById("send-button");
+
+    form.addEventListener("submit", function () {
+      button.disabled = true;
+      button.textContent = "SENDING...";
+    });
+  </script>
+
+</body>
+</html>
